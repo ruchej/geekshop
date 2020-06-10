@@ -9,4 +9,5 @@ urlpatterns = [
     path("logout/", authnapp.logout, name="logout"),
     path("register/", authnapp.register, name="register"),
     path("edit/", authnapp.edit, name="edit"),
+    path("verify/<str:email>/<str:activation_key>/", authnapp.verify, name="verify"),
 ]
