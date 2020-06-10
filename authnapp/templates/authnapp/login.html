@@ -6,7 +6,7 @@
 <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
     {% csrf_token %}
     {% if next_page %}
-        <input type="hidden" name="next_page" value="{{ next_page }}">
+    <input type="hidden" name="next_page" value="{{ next_page }}">
     {% endif %}
     {{ login_form.as_p }}
     <br>
@@ -14,8 +14,14 @@
 </form>
 <button class="btn btn-round form-control">
     <a href="{% url 'auth:register' %}" class="">
-        зарегистрироваться
+        Зарегистрироваться
     </a>
 </button>
+<button class="btn btn-round form-control">
+    <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+        Вход через ВКонтакте
+    </a>
+</button>
+
 
 {% endblock content %}
