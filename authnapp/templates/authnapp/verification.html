@@ -1,8 +1,8 @@
 {% extends 'authnapp/base.html' %}
 {% load staticfiles %}
 
-{% block content %}
 
+{% block content %}
 {% if user %}
 <h3>Поздравляем!</h3>
 <br>
@@ -12,7 +12,9 @@
 {% endif %}
 <br>
 <button class="btn btn-round form-control">
-    <a href="{% url 'main' %}" class="">на главную</a>
+    <a href="{% url 'main' %}" class="">
+        на главную
+    </a>
 </button>
 
 {% endblock %}

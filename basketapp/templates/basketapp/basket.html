@@ -6,7 +6,12 @@
 <div class="basket_list">
     {% include 'basketapp/includes/inc_basket_list.html' %}
 </div>
-<button class="btn btn-round">
+<button class="btn btn-default btn-round btn-block">
+    <a href="{% url 'ordersapp:order_create' %}">
+        сформировать заказ
+    </a>
+</button>
+<button class="btn btn-round btn-block">
     <a href="{% url 'main' %}">
         на главную
     </a>

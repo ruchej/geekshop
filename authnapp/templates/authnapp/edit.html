@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
+
 <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ edit_form.as_p }}
@@ -13,5 +14,9 @@
         на главную
     </a>
 </button>
-<div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
+
+{% if user.avatar %}
+<div class="user_avatar"><img src="{{ media_url }}{{ user.avatar }}"></div>
+{% endif %}
+
 {% endblock %}

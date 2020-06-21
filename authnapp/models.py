@@ -9,16 +9,17 @@ from django.utils.timezone import now
 
 class ShopUser(AbstractUser):
     avatar = models.ImageField(upload_to="users_avatars", blank=True)
-    age = models.PositiveIntegerField("возраст", default=18)
-    activation_key = models.CharField("ключ подтверждения", max_length=128, blank=True)
+    age = models.PositiveIntegerField(verbose_name="возраст", default=18)
+    activation_key = models.CharField(verbose_name="ключ подтверждения", max_length=128, blank=True)
     activation_key_expires = models.DateTimeField(
-        "актуальность ключа", default=(now() + timedelta(hours=48))
+        verbose_name="актуальность ключа", default=(now() + timedelta(hours=48))
     )
 
     def is_activation_key_expired(self):
         if now() <= self.activation_key_expires:
             return False
-        return True
+        else:
+            return True
 
 
 class ShopUserProfile(models.Model):
@@ -30,14 +31,10 @@ class ShopUserProfile(models.Model):
         (FEMALE, "Ж"),
     )
 
-    user = models.OneToOneField(
-        ShopUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE
-    )
+    user = models.OneToOneField(ShopUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE)
     tagline = models.CharField(verbose_name="теги", max_length=128, blank=True)
     aboutMe = models.TextField(verbose_name="о себе", max_length=512, blank=True)
-    gender = models.CharField(
-        verbose_name="пол", max_length=1, choices=GENDER_CHOICES, blank=True
-    )
+    gender = models.CharField(verbose_name="пол", max_length=1, choices=GENDER_CHOICES, blank=True)
 
     @receiver(post_save, sender=ShopUser)
     def create_user_profile(sender, instance, created, **kwargs):

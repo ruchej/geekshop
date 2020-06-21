@@ -14,14 +14,13 @@
 </form>
 <button class="btn btn-round form-control">
     <a href="{% url 'auth:register' %}" class="">
-        Зарегистрироваться
+        зарегистрироваться
     </a>
 </button>
 <button class="btn btn-round form-control">
     <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
-        Вход через ВКонтакте
+        Вход через <i class="fa fa-vk"></i>
     </a>
 </button>
-
 
 {% endblock content %}
